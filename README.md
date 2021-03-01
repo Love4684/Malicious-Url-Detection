@@ -56,12 +56,4 @@ Used Libraries -
 - [Request Handler](Server/app.py)
 - [URL Checker](Server/feature.py)
 
-### Trawler Browser Extension
-
-- [Extension](Extension)
-
-
-### Resources
-
-Feature Extraction Resource -
 
