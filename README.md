@@ -1,59 +1,51 @@
-# Detection-of-Phishing-Websites-using-an-Efficient-Machine-Learning-Framework
+# Phishing Website Detection by Machine Learning Techniques
 
-This literaly detect Phishing websites using Machine Learning
+## Objective
+A phishing website is a common social engineering method that mimics trustful uniform resource locators (URLs) and webpages. The objective of this project is to train machine learning models and deep neural nets on the dataset created to predict phishing websites. Both phishing and benign URLs of websites are gathered to form a dataset and from them required URL and website content-based features are extracted. The performance level of each model is measures and compared.
 
+## Data Collection
+The set of phishing URLs are collected from opensource service called **PhishTank**. This service provide a set of phishing URLs in multiple formats like csv, json etc. that gets updated hourly. To download the data: https://www.phishtank.com/developer_info.php. From this dataset, 5000 random phishing URLs are collected to train the ML models.
 
+The legitimate URLs are obatined from the open datasets of the University of New Brunswick, https://www.unb.ca/cic/datasets/url-2016.html. This dataset has a collection of benign, spam, phishing, malware & defacement URLs. Out of all these types, the benign url dataset is considered for this project. From this dataset, 5000 random legitimate URLs are collected to train the ML models.
 
-### What languages used?
+## Feature Extraction
+The below mentioned category of features are extracted from the URL data:
 
-Basicaly here used two languages,
-
-- ` Python ` - for building ML Model
-
-
-### What inside the Code?
-
-
-- Phishing URLs Detecion Machine Learning Model
-
-  
-### Building Machine Learning Model
-
-Used Libraries -
-
-||||
-| --- | --- | --- |
-| tensorflow | numpy | pandas |
-| urllib | re | ipaddress |
-| bs4 | whois | request |
-| datetime | request | sklearn |
-| matplotlib | keras |  |
-
-
-- [Data downloading and creating Comma Seperated Value(.csv) Files](Constructing_ML_Model/1_Creating_URL.ipynb)
-
-- [Data Cleaning and Feature Extraction of ` Phishing URLs `](Constructing_ML_Model/2_Feature_Extraction_of_Phishing_URL.ipynb)
-
-- [Data Cleaning and Feature Extraction of ` Legitimate URLs `](Constructing_ML_Model/3_Feature_Extraction_of_Legitimate_URL.ipynb)
-
-- [Creating Final Dataset and save in to Comma Seperated Value(.csv) Files](Constructing_ML_Model/4_Creating_Final_Dataset.ipynb)
-
-- [Finding Best Machine Learining Model based on score](Constructing_ML_Model/5_Finding_Best_Model.ipynb)
-
-- [Train best Machine Learning Model]
+1.   Address Bar based Features <br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;In this category 9 features are extracted.
+2.   Domain based Features<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;In this category 4 features are extracted.
+3.   HTML & Javascript based Features<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;In this category 4 features are extracted.
 
 
 
-Used Libraries -
+So, all together 17 features are extracted from the 10,000 URL dataset and are stored in '[final_data_set.csv](https://github.com/Love4684/Detection-of-Phishing-Websites-using-an-Efficient-Machine-Learning-Framework/blob/main/4_Finding_Best_Model/final_data_set.csv)' file. <br>
+The features are referenced from the https://archive.ics.uci.edu/ml/datasets/Phishing+Websites.
 
-||||
-| --- | --- | --- |
-| urllib | ipaddress | re |
-| bs4 | whois | urllib |
-| datetime | requests | flask |
-| feature | tensorflow | numpy |
+## Models & Training
 
-- [Request Handler](Server/app.py)
-- [URL Checker](Server/feature.py)
+Before stating the ML model training, the data is split into 80-20 i.e., 8000 training samples & 2000 testing samples. From the dataset, it is clear that this is a supervised machine learning task. There are two major types of supervised machine learning problems, called classification and regression.
+
+This data set comes under classification problem, as the input URL is classified as phishing (1) or legitimate (0). The supervised machine learning models (classification) considered to train the dataset in this project are:
+
+* Decision Tree
+* Random Forest
+* Multilayer Perceptrons
+* XGBoost
+* Autoencoder Neural Network
+* Support Vector Machines
+
+All these models are trained on the dataset and evaluation of the model is done with the test dataset. The elaborate details of the models & its training are mentioned in [Detection-of-Phishing-Websites-using-an-Efficient-Machine-Learning-Framework & Finding_Best_Model.ipynb](https://github.com/Love4684/Detection-of-Phishing-Websites-using-an-Efficient-Machine-Learning-Framework/blob/main/4_Finding_Best_Model/Finding_Best_Model.ipynb)[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/love4684/Detection-of-Phishing-Websites-using-an-Efficient-Machine-Learning-Framework/blob/main/4_Finding_Best_Model/Finding_Best_Model.ipynb)
+
+## Presentation
 
 
+The slide presentaion used in this video is [Detection-of-Phishing-Websites-using-an-Efficient-Machine-Learning-Framework.pdf](https://github.com/Love4684/Detection-of-Phishing-Websites-using-an-Efficient-Machine-Learning-Framework/blob/main/2017BCS0035%20(1).pdf)
+
+## End Results
+From the obtained results of the above models, XGBoost Classifier has highest model performance of 86.4%. So the model is saved to the file '[XGBoostClassifier.pickle.dat](https://github.com/Love4684/Detection-of-Phishing-Websites-using-an-Efficient-Machine-Learning-Framework/blob/main/4_Finding_Best_Model/XGBoostClassifier.pickle%20(1).dat)'
+
+### Next Steps
+
+This project can be further extended to creation of browser extention or developed a GUI which takes the URL and predicts it's nature i.e., legitimate of phishing. *As of now, I am working towards the creation of browser extention for this project. And may even try the GUI option also.* The further developments will be updated at the earliest. 
